@@ -7,7 +7,9 @@ from telethon.tl.types import ChannelParticipantAdmin
 from telethon.tl.types import ChannelParticipantCreator
 from telethon.tl.functions.channels import GetParticipantRequest
 from telethon.errors import UserNotParticipantError
-from config import client, bot_username, owner_username
+
+
+
 
 logging.basicConfig(
     level=logging.INFO,
@@ -84,7 +86,7 @@ async def tagall(event):
         return await event.respond("__I can't mention members for older messages! (messages which are sent before I'm added to group)__")
   else:
     return await event.respond("__Reply to a message or give me some text to mention others!__")
-  spam_chat = []
+  spam_chats = []
   spam_chats.append(chat_id)
   usrnum = 0
   usrtxt = ''
@@ -92,8 +94,8 @@ async def tagall(event):
     if not chat_id in spam_chats:
       break
     usrnum += 1
-    usrtxt += f"[{usr.first_name}](tg://user?id={usr.id}) "
-    if usrnum == 5:
+    usrtxt += f"[{''}](tg://user?id={usr.id}) "
+    if usrnum == 10:
       if mode == "text_on_cmd":
         txt = f"{usrtxt}\n\n{msg}"
         await client.send_message(chat_id, txt)
